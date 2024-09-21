@@ -1,0 +1,24 @@
+img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-top: 3rem;
+    border-radius: 5%;
+    padding: 2rem;
+}
+
+.head{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

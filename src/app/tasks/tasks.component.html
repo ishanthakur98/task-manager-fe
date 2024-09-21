@@ -1,0 +1,17 @@
+<app-create-task *ngIf="addTask" (isCancled) = isTaskCanceled($event) (newTask) = addNewTask($event)></app-create-task>
+<section id="tasks">
+    <header>
+        <h2>{{name}}'s Tasks</h2>
+        <menu>
+            <button (click) = "createTask()">Add Task</button>
+        </menu>
+    </header>
+    <ul *ngIf="selectedUserTasks.length !== 0;else noTask" >
+        <li *ngFor="let task of selectedUserTasks">
+            <app-task (isCompleted)="taskCompleted($event)" [task] = "task"></app-task>
+        </li>
+    </ul>
+    <ng-template #noTask>
+        <p id="noTask">Click add task to assign task</p>
+    </ng-template>
+</section>

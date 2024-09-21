@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Hides the track background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #565454; /* Scrollbar thumb color */
+    border-radius: 10px; /* Round the thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color when hovered */
+  }
+  
