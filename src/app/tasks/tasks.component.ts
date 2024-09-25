@@ -3,61 +3,42 @@ import { NgFor, NgIf } from '@angular/common';
 import { TaskComponent } from './task/task.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { task } from './task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent,NgFor,NgIf,CreateTaskComponent],
+  imports: [TaskComponent, NgFor, NgIf, CreateTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  @Input({required:true}) id! :string; 
-  @Input({required:true}) name!: string;
+
+  constructor(private tasksService: TasksService) { }
+
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) name!: string;
   addTask = false;
-  
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the basic and advanced features of angular 18',
-      dueDate: '2025-12-12'
-    },
-    {
-      id: 't2',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the basic and advanced features of angular 18',
-      dueDate: '2025-12-12'
-    },
-    {
-      id: 't3',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the basic and advanced features of angular 18',
-      dueDate: '2025-12-12'
-    }
-  ]
 
-  get selectedUserTasks(){
-    return this.tasks.filter((task) => task.userId===this.id);
+
+  get selectedUserTasks() {
+    return this.tasksService.selectedUserTasks(this.id);
   }
 
-  taskCompleted(id:string){
-    this.tasks = this.tasks.filter(task => task.id != id);
+  taskCompleted(id: string) {
+    this.tasksService.taskCompleted(id);
   }
 
-  createTask(){
-    this.addTask=true;
+  createTask() {
+    this.addTask = true;
   }
 
-  isTaskCanceled(val:boolean){
-    this.addTask=false;
+  isTaskCanceled(val: boolean) {
+    this.addTask = false;
   }
 
-  addNewTask(newTask:task){
-    newTask.userId=this.id;
-    this.tasks.push(newTask);
+  addNewTask(newTask: task) {
+    newTask.userId = this.id;
+    this.tasksService.addNewTask(newTask, this.id);
   }
 }
